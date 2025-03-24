@@ -37,6 +37,7 @@ body {
 }
 
 .input-group {
+  width: 90%;
   margin-bottom: 15px;
   text-align: left;
 }
