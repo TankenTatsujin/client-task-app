@@ -1,0 +1,74 @@
+.edit-client-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .edit-client-box {
+    width: 90%;
+    gap: 20px;
+    max-width: 400px;
+    background: #222;
+    padding: 100px;
+    border-radius: 50px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  /* Title */
+  .edit-client-box h2 {
+    margin-bottom: 40px;
+    color: white;
+  }
+  
+  /* Input fields */
+  .edit-input {
+    width: 90%;
+    padding: 20px;
+    margin: 8px 0;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #1e1e1e;
+    color: white;
+  }
+  
+  /* Buttons */
+  .edit-btn, .cancel-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  /* Update button */
+  .edit-btn {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .edit-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Cancel button */
+  .cancel-btn {
+    background-color: red;
+    color: white;
+  }
+  
+  .cancel-btn:hover {
+    background-color: darkred;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 480px) {
+    .edit-client-box {
+      width: 95%;
+      padding: 20px;
+    }
+  }
+  

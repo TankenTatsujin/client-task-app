@@ -1,0 +1,96 @@
+.client-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .client-form input {
+    flex: 1 1 48%;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #1e1e1e;
+    color: white;
+  }
+  
+  .client-form button {
+    flex: 1 1 100%;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .client-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #222;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 10px 0;
+  }
+  
+  .client-card h3 {
+    margin: 0;
+  }
+  
+  .client-card p {
+    margin: 5px 0 0;
+    color: #bbb;
+  }
+  
+  .edit-btn, .delete-btn {
+    padding: 12px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .edit-btn {
+    background-color: #ffc107;
+    color: black;
+    margin-right: 5px;
+  }
+
+  .edit-btn:hover{
+    background-color: #0056b3;
+  }
+  
+  .delete-btn {
+    background-color: #dc3545;
+    color: white;
+  }
+
+  .delete-btn:hover{
+    background-color: darkred;
+  }
+  
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #222;
+    
+  }
+  
+  .username {
+    font-size: 18px;
+    font-weight: bold;
+    color: white; /* Make username white */
+  }
+  
+  .logout-icon {
+    font-size: 24px;
+    color: red; /* Make logout button red */
+    cursor: pointer;
+  }
+  
+  .logout-icon:hover {
+    color: darkred; /* Darker red on hover */
+  }
+  
