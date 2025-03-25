@@ -89,8 +89,11 @@ const LandingPage = () => {
   
 
   const handleDeleteClient = (id) => {
-    remove(ref(database, `client/${id}`));
+    remove(ref(database, `client/${id}`))
+      .then(() => toast.success("Client deleted successfully!"))
+      .catch((error) => toast.error("Error deleting client: " + error.message));
   };
+  
 
   return (
     <div className="landing-container">

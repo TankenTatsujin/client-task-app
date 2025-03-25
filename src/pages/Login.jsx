@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { database } from "../firebaseConfig";
 import { ref, set, get, child } from "firebase/database";
-import { useNavigate } from "react-router-dom"; // ✅ Import useNavigate
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./Login.css";
 
 const Login = () => {
@@ -9,52 +11,49 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  const navigate = useNavigate(); // ✅ Initialize navigate
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (showSignup) {
       if (!email.endsWith("@gmail.com")) {
-        alert("Please enter a valid Gmail address.");
+        toast.error("Please enter a valid Gmail address.");
         return;
       }
 
       try {
-        const dbRef = ref(database);
-        const userRef = child(dbRef, "user/" + username);
+        const userRef = ref(database, "user/" + username);
         const snapshot = await get(userRef);
 
         if (snapshot.exists()) {
-          alert("User already exists!");
+          toast.error("User already exists!");
         } else {
           await set(userRef, {
             "user-name": username,
             "user-email": email,
             "password": password,
           });
-          alert("Signup successful! You can now log in.");
+          toast.success("Signup successful! You can now log in.");
           setShowSignup(false);
         }
       } catch (error) {
-        console.error("Error signing up:", error);
+        toast.error("Signup failed: " + error.message);
       }
     } else {
       try {
-        const dbRef = ref(database);
-        const userRef = child(dbRef, "user/" + username);
+        const userRef = ref(database, "user/" + username);
         const snapshot = await get(userRef);
 
         if (snapshot.exists() && snapshot.val().password === password) {
-          localStorage.setItem("loggedInUser", username); // Store user session
-          alert("Login successful!");
-          navigate("/dashboard"); // ✅ Redirect to Landing Page
+          localStorage.setItem("loggedInUser", username);
+          toast.success("Login successful!");
+          navigate("/dashboard");
         } else {
-          alert("Invalid credentials.");
+          toast.error("Invalid username or password.");
         }
       } catch (error) {
-        console.error("Error logging in:", error);
+        toast.error("Login failed: " + error.message);
       }
     }
   };
@@ -66,49 +65,22 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
           {showSignup && (
             <div className="input-group">
-              <label htmlFor="email">Email:</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
+              <label>Email:</label>
+              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
             </div>
           )}
           <div className="input-group">
-            <label htmlFor="username">Username:</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
+            <label>Username:</label>
+            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
           </div>
           <div className="input-group">
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+            <label>Password:</label>
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
           </div>
-          <div className="button-container">
-            <button type="submit">{showSignup ? "Sign Up" : "Login"}</button>
-          </div>
+          <button type="submit">{showSignup ? "Sign Up" : "Login"}</button>
         </form>
         <p onClick={() => setShowSignup(!showSignup)} className="toggle-link">
-          {showSignup ? (
-            <>Already have an account? <span className="highlight">Login</span></>
-          ) : (
-            <>Don't have an account? <span className="highlight">Sign Up</span></>
-          )}
+          {showSignup ? "Already have an account? Login" : "Don't have an account? Sign Up"}
         </p>
       </div>
     </div>

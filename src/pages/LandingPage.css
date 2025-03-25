@@ -83,28 +83,28 @@
   .username {
     font-size: 18px;
     font-weight: bold;
-    color: white; /* Make username white */
+    color: white; 
   }
   
   .logout-icon {
     font-size: 24px;
-    color: red; /* Make logout button red */
+    color: red; 
     cursor: pointer;
   }
   
   .logout-icon:hover {
-    color: darkred; /* Darker red on hover */
+    color: darkred;
   }
   
   html, body {
     height: 100%;
-    overflow-y: auto; /* Allows scrolling */
-    scroll-behavior: smooth; /* Enables smooth scrolling */
+    overflow-y: auto; 
+    scroll-behavior: smooth; 
   }
    
   .client-container {
-    height: auto; /* Allows it to expand naturally */
-    min-height: 100vh; /* Ensures it doesn't get too small */
-    overflow-y: auto; /* Allows scrolling */
+    height: auto; 
+    min-height: 100vh; 
+    overflow-y: auto; 
   }
   

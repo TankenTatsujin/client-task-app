@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { database } from "../firebaseConfig";
 import { ref, update, get } from "firebase/database";
-import "./EditClient.css"; 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./EditClient.css";
 
 const EditClient = () => {
-  const { id } = useParams(); // Get client ID from URL
+  const { id } = useParams();
   const navigate = useNavigate();
   const [clientData, setClientData] = useState({
     clientId: "",
@@ -29,8 +31,8 @@ const EditClient = () => {
           clientEmail: snapshot.val()["client-email"] || "",
         });
       } else {
-        alert("Client not found!");
-        navigate("/dashboard"); // Redirect if client doesn't exist
+        toast.error("Client not found!");
+        navigate("/dashboard");
       }
     });
   }, [id, navigate]);
@@ -49,10 +51,10 @@ const EditClient = () => {
       "client-email": clientData.clientEmail,
     })
       .then(() => {
-        alert("Client updated successfully!");
-        navigate("/dashboard"); // Redirect to dashboard
+        toast.success("Client updated successfully!");
+        navigate("/dashboard");
       })
-      .catch((error) => alert("Error updating client: " + error.message));
+      .catch((error) => toast.error("Error updating client: " + error.message));
   };
 
   return (

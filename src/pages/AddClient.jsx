@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { database } from "../firebaseConfig";
 import { ref, push, set } from "firebase/database";
-import "./AddClient.css"; // Create a CSS file for styling
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./AddClient.css";
 
 const AddClient = () => {
   const [clientId, setClientId] = useState("");
@@ -15,7 +17,7 @@ const AddClient = () => {
 
   const handleAddClient = () => {
     if (!clientId || !businessStatus || !clientAddress || !clientBusiness || !clientContact || !clientEmail) {
-      alert("Please fill in all fields!");
+      toast.error("Please fill in all fields!");
       return;
     }
 
@@ -27,10 +29,10 @@ const AddClient = () => {
       "client-business": clientBusiness,
       "client-contact": clientContact,
       "client-email": clientEmail,
+    }).then(() => {
+      toast.success("Client added successfully!");
+      navigate("/dashboard");
     });
-
-    alert("Client added successfully!");
-    navigate("/dashboard"); // Redirect back to dashboard
   };
 
   return (
