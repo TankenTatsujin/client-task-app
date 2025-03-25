@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Login from "./pages/Login";
 import LandingPage from "./pages/LandingPage";
 import AddClient from "./pages/AddClient";
-import EditClient from "./pages/EditClient"; // Import EditClient
+import EditClient from "./pages/EditClient"; 
 
 function App() {
   return (
